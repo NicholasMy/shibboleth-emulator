@@ -1,0 +1,28 @@
+# Host and port for this emulator server to run on
+HOST: str = "0.0.0.0"
+PORT: int = 7777
+
+# The URL of the applicaiton you're testing without a trailing slash
+# PASSTHROUGH_URL: str = "http://localhost:8080"
+
+# Emulate the host header value to send to the backend server
+EMULATE_HOST: bool = True
+EMULATE_HOST_VALUE: str = "example.com"
+
+# Whether to replace links to the passthrough URL with links to the emulator URL
+REPLACE_URLS: bool = True
+
+# Paths that should be handled by the shibboleth emulator
+SHIBBOLETH_PATHS = [
+	"/some/path",
+	"/some/other/path",
+]
+
+# Headers that should be added to the response when handling shibboleth
+# These will be the default when starting the emulator, but changes will be preserved in memory
+SHIBBOLETH_HEADERS = {
+    "Uid": "username",
+    "Pn": "11111111",
+    "Givenname": "firstname",
+    "Sn": "lastname",
+}
