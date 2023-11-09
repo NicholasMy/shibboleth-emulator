@@ -6,7 +6,7 @@ A reverse proxy that emulates a Shibboleth Service Provider (SP) during developm
 
 ### Configuration
 
-Open `config.py`
+Copy `config.py.template` to `config.py`, then open and edit `config.py` as follows:
 
 - Set HOST and PORT to the host and port you want the emulator to listen on. "0.0.0.0" refers to all interfaces. 7777 is
   the default port.
