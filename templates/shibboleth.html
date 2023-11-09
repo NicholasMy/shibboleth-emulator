@@ -3,38 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>Nicholas' Shibboleth Emulator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #170505;
+            color: white;
+            margin: 0;
+            padding: 10px 30px 30px;
+        }
+
+        th, td {
+            max-width: 1000px;
+            word-wrap: break-word;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        a {
+            color: #1eaeda;
+        }
+    </style>
 </head>
 <body>
 <h1>Nicholas' Shibboleth Emulator</h1>
+<p>By <a href="https://nicholasmy.com" target="_blank">Nicholas Myers</a> | <a
+        href="https://github.com/NicholasMy/shibboleth-emulator" target="_blank">Source</a></p>
+<hr>
 <p>Specify the Shibboleth details you'd like to send to the backend.</p>
 <form action="{{ path }}" method="GET">
 
     <input type="hidden" name="shibboleth_proxy_complete" value="true"/>
 
-    <label>
-        Method
-        <select name="method">
-            <option value="GET" {% if method == 'GET' %}selected{% endif %}>GET</option>
-            <option value="POST" {% if method == 'POST' %}selected{% endif %}>POST</option>
-            <option value="PUT" {% if method == 'PUT' %}selected{% endif %}>PUT</option>
-            <option value="PATCH" {% if method == 'PATCH' %}selected{% endif %}>PATCH</option>
-            <option value="OPTIONS" {% if method == 'OPTIONS' %}selected{% endif %}>OPTIONS</option>
-            <option value="DELETE" {% if method == 'DELETE' %}selected{% endif %}>DELETE</option>
-        </select>
-    </label>
-    <br>
+    <table>
+        <tbody>
+        <tr>
+            <td>
+                <label for="method">Method</label>
+            </td>
+            <td>
+                <select name="method" aria-label="Method">
+                    <option value="GET" {% if method == 'GET' %}selected{% endif %}>GET</option>
+                    <option value="POST" {% if method == 'POST' %}selected{% endif %}>POST</option>
+                    <option value="PUT" {% if method == 'PUT' %}selected{% endif %}>PUT</option>
+                    <option value="PATCH" {% if method == 'PATCH' %}selected{% endif %}>PATCH</option>
+                    <option value="OPTIONS" {% if method == 'OPTIONS' %}selected{% endif %}>OPTIONS</option>
+                    <option value="DELETE" {% if method == 'DELETE' %}selected{% endif %}>DELETE</option>
+                </select>
+            </td>
+        </tr>
 
-    {% for header in headers %}
-        <label>
-            {{ header }}
-            <input type="text" name="{{ header }}" value="{{ headers[header] }}">
-        </label>
-        <br>
-    {% endfor %}
-    <br>
+        {% for header in headers %}
+            <tr>
+                <td>
+                    <label for="{{ header }}">{{ header }}</label>
+                </td>
+                <td>
+                    <input aria-label="{{ header }}" type="text" name="{{ header }}" value="{{ headers[header] }}">
+                </td>
+            </tr>
+        {% endfor %}
 
+        </tbody>
+    </table>
+
+    <br>
     <button type="submit">Continue</button>
-    <p>Continuing will pass this data to {{ path }}</p>
+    <p>Continuing will pass this data to {{ path }} as if it were provided by the Shibboleth IdP.</p>
 
 </form>
 
