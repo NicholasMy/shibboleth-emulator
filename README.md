@@ -27,3 +27,11 @@ Run `shibboleth-emulator.py` on your host machine. Run your application hosted a
 and port you specified. Most requests will be passed directly to your application. When you request a Shibboleth path,
 the emulator will intercept the request and ask you to provide the Shibboleth headers. The emulator will then forward
 the request to your application with the Shibboleth headers injected.
+
+## Screenshot
+
+![image](https://github.com/NicholasMy/shibboleth-emulator/assets/32116122/b7aa2650-cbdd-4596-a74f-6a7310326ff2)
+
+When accessing a path specified in SHIBBOLETH_PATHS, you'll see this interception page. The fields are dynamically
+generated based on your SHIBBOLETH_HEADERS configuration.
+
